@@ -1,0 +1,44 @@
+.para{
+    background-color: yellow;
+    width: 80%;
+    margin-top: 10px;
+    border-radius : 10px;
+    text-align: center ;
+}
+
+.card-img-top{
+    height: 350px;
+    object-fit: contain;
+
+
+}
+.btn {
+    position: relative;
+    top: 10px;
+}
+
+    .border{
+
+        background-color: lightgray;
+        color: black;
+        height: 100px;
+        margin-top: 20px;
+
+    }
+    .border>div{
+        font-size: large;
+        margin-top : 30px;
+    }
+
+
+
+    @media screen and (max-width: 580px) {
+        body {
+          background-color: lightgrey;
+        }
+
+        .card{
+            margin: auto;
+            padding: auto;
+        }
+    }
