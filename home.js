@@ -1,6 +1,6 @@
 
 
-
+let slider = document.getElementById("slider");
 let homediv = document.getElementById("home-container")
 fetch('https://fakestoreapi.com/products')
     .then((res) => {
@@ -8,8 +8,36 @@ fetch('https://fakestoreapi.com/products')
     })
     .then((data) => {
 
-     console.log(data)
+        console.log(data)
         data.forEach((value) => {
+
+            slider.innerHTML = `  <div id="carouselExampleControls" class="carousel slide container" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="d-block w-100 h-70" src="./imgs/7688Best-Selling-Online-Products-In-Pakistan-At-Variants.webp" alt="First slide">
+          </div>
+          
+          <div class="carousel-item">
+            <img class="d-block w-100 h-70" src="./imgs/Makeup_products.webp" alt="Second slide">
+          </div>
+          <div class="carousel-item">
+            <img class="d-block w-100 h-70" src="./imgs/istockphoto-504742864-612x612.jpg" alt="Third slide">
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+     
+            
+            
+            `
+
 
 
 
@@ -77,26 +105,26 @@ fetch('https://fakestoreapi.com/products/categories')
 
     })
 
-    var showdata = document.getElementById("show-data")
-   
+var showdata = document.getElementById("show-data")
 
-  
-    function wom (){
-        showdata.innerHTML = ""
 
-        fetch('https://fakestoreapi.com/products')
+
+function wom() {
+    showdata.innerHTML = ""
+
+    fetch('https://fakestoreapi.com/products')
         .then((res) => {
             return res.json()
         })
         .then((data) => {
-    
-        
+
+
             data.forEach((value) => {
-                
-if(value.category === "women's clothing"){
+
+                if (value.category === "women's clothing") {
 
 
-    showdata.innerHTML += `
+                    showdata.innerHTML += `
     <div class=" col-md-3   " >
         <div class=" mt-3  card h-100    " style="width: 18rem; ; ">
         <p  class="para"  > ${value.category} </p>
@@ -111,36 +139,36 @@ if(value.category === "women's clothing"){
    
     </div> `}
             });
-    
-    
+
+
         })
-    
+
         .catch((error) => {
             showdata.innerText = ` <div class=" col-md-3" >   ${error}   </div>`
-    
+
         })
-    
-
- }
 
 
-  
- function men (){
+}
+
+
+
+function men() {
     showdata.innerHTML = ""
 
     fetch('https://fakestoreapi.com/products')
-    .then((res) => {
-        return res.json()
-    })
-    .then((data) => {
-
-    
-        data.forEach((value) => {
-            
-if(value.category === "men's clothing"){
+        .then((res) => {
+            return res.json()
+        })
+        .then((data) => {
 
 
-showdata.innerHTML += `
+            data.forEach((value) => {
+
+                if (value.category === "men's clothing") {
+
+
+                    showdata.innerHTML += `
 <div class=" col-md-3   " >
     <div class=" mt-3  card h-100    " style="width: 18rem; ; ">
     <p  class="para"  > ${value.category} </p>
@@ -154,36 +182,36 @@ showdata.innerHTML += `
         
 
 </div> `}
-        });
+            });
 
 
-    })
+        })
 
-    .catch((error) => {
-        showdata.innerText = ` <div class=" col-md-3" >   ${error}   </div>`
+        .catch((error) => {
+            showdata.innerText = ` <div class=" col-md-3" >   ${error}   </div>`
 
-    })
+        })
 
 
 }
 
 
-function elec (){
+function elec() {
 
     showdata.innerHTML = ""
     fetch('https://fakestoreapi.com/products')
-    .then((res) => {
-        return res.json()
-    })
-    .then((data) => {
-
-    
-        data.forEach((value) => {
-            
-if(value.category === "electronics"){
+        .then((res) => {
+            return res.json()
+        })
+        .then((data) => {
 
 
-showdata.innerHTML += `
+            data.forEach((value) => {
+
+                if (value.category === "electronics") {
+
+
+                    showdata.innerHTML += `
 <div class=" col-md-3   " >
     <div class=" mt-3  card h-100    " style="width: 18rem; ; ">
     <p  class="para"  > ${value.category} </p>
@@ -197,35 +225,35 @@ showdata.innerHTML += `
         
 
 </div> `}
-        });
+            });
 
 
-    })
+        })
 
-    .catch((error) => {
-        showdata.innerText = ` <div class=" col-md-3" >   ${error}   </div>`
+        .catch((error) => {
+            showdata.innerText = ` <div class=" col-md-3" >   ${error}   </div>`
 
-    })
+        })
 
 
 }
 
-function jew ( ){
-    
-showdata.innerHTML = ""
+function jew() {
+
+    showdata.innerHTML = ""
     fetch('https://fakestoreapi.com/products')
-    .then((res) => {
-        return res.json()
-    })
-    .then((data) => {
-
-    
-        data.forEach((value) => {
-            
-if(value.category === "jewelery"){
+        .then((res) => {
+            return res.json()
+        })
+        .then((data) => {
 
 
-showdata.innerHTML += `
+            data.forEach((value) => {
+
+                if (value.category === "jewelery") {
+
+
+                    showdata.innerHTML += `
 <div class=" col-md-3   " >
     <div class=" card mt-3  card h-100    " style="width: 18rem; ; ">
     <p  class="para"  > ${value.category} </p>
@@ -239,25 +267,25 @@ showdata.innerHTML += `
         
 
 </div> `}
-        });
+            });
 
 
-    })
+        })
 
-    .catch((error) => {
-        showdata.innerText = ` <div class=" col-md-3" >   ${error}   </div>`
+        .catch((error) => {
+            showdata.innerText = ` <div class=" col-md-3" >   ${error}   </div>`
 
-    })
+        })
 
 
 
-    
+
 
 }
 
-function resetf (){
+function resetf() {
 
-    
+
     showdata.innerHTML = " "
 
 
