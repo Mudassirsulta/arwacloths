@@ -14,7 +14,7 @@ fetch('https://fakestoreapi.com/products')
             homediv.innerHTML += `
                 <div class="col-md-3">
                     <div class="mt-3 card h-100" style="width: 18rem;">
-                        <p class="para">${value.category}</p>``
+                        <p class="para">${value.category}</p>
                         <img src="${value.image}" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">${value.title}</h5>
@@ -56,13 +56,6 @@ function addToCart(product) {
     localStorage.setItem("cart", JSON.stringify(cart));
     alert(`${product.title} added to cart`);
 }
-
-
-
-
-
-
-
 
 
 const categoryButton = document.querySelector("#cate")
@@ -122,12 +115,29 @@ function wom() {
             <h5 class="card-title">${value.title}</h5>
            <p class="card-text">${value.description.slice(0, 150)}....</p>
              <a href="#"  class=" btn btn-primary   w-100  ">${value.price}</a>
+             <button class="btn btn-success w-100 mt-2 add-to-cart-btn" data-id="${value.id}">Add to cart</button>
                 </div>
         </div>
             
    
     </div> `}
             });
+
+            document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const id = parseInt(this.getAttribute("data-id"));
+                    const product = allProducts.find(p => p.id === id);
+                    if (product) {
+                        addToCart(product);
+                    }
+                });
+            });
+
+
+
+
+
+
 
 
         })
@@ -159,13 +169,14 @@ function men() {
 
                     showdata.innerHTML += `
 <div class=" col-md-3   " >
-    <div class=" mt-3  card h-100    " style="width: 18rem; ; ">
+    <div class=" mt-3  card h-100    " style="width: 18rem;  ">
     <p  class="para"  > ${value.category} </p>
        <img src="${value.image}" class="card-img-top " alt="...">
                <div class="card-body">
         <h5 class="card-title">${value.title}</h5>
        <p class="card-text">${value.description.slice(0, 150)}....</p>
          <a href="#"  class=" btn btn-primary  w-100  ">${value.price}</a>
+         <button class="btn btn-success w-100 mt-2 add-to-cart-btn" data-id="${value.id}">Add to cart</button>
             </div>
     </div>
         
@@ -173,8 +184,26 @@ function men() {
 </div> `}
             });
 
+            document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const id = parseInt(this.getAttribute("data-id"));
+                    const product = allProducts.find(p => p.id === id);
+                    if (product) {
+                        addToCart(product);
+                    }
+                });
+            });
+
+
+
+
 
         })
+        
+
+
+
+
 
         .catch((error) => {
             showdata.innerText = ` <div class=" col-md-3" >   ${error}   </div>`
@@ -209,12 +238,29 @@ function elec() {
         <h5 class="card-title">${value.title}</h5>
        <p class="card-text">${value.description.slice(0, 150)}....</p>
          <a href="#"  class=" btn  btn-primary   w-100  ">${value.price}</a>
+         <button class="btn btn-success w-100 mt-2 add-to-cart-btn" data-id="${value.id}">Add to cart</button>
             </div>
     </div>
         
 
 </div> `}
+            })
+            document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const id = parseInt(this.getAttribute("data-id"));
+                    const product = allProducts.find(p => p.id === id);
+                    if (product) {
+                        addToCart(product);
+                    }
+                });
             });
+
+
+
+
+
+
+
 
 
         })
@@ -250,12 +296,26 @@ function jew() {
         <h5 class="card-title">${value.title}</h5>
        <p class="card-text">${value.description.slice(0, 150)}....</p>
          <a href="#"  class=" btn btn-primary   w-100  ">${value.price}</a>
+         <button class="btn btn-success w-100 mt-2 add-to-cart-btn" data-id="${value.id}">Add to cart</button>
             </div>
     </div>
         
 
 </div> `}
             });
+
+
+
+            document.querySelectorAll(".add-to-cart-btn").forEach(button => {
+                button.addEventListener("click", function () {
+                    const id = parseInt(this.getAttribute("data-id"));
+                    const product = allProducts.find(p => p.id === id);
+                    if (product) {
+                        addToCart(product);
+                    }
+                });
+            });
+
 
 
         })
@@ -293,18 +353,72 @@ if (cart.length == 0) {
 } else {
     cart.forEach((item) => {
         container.innerHTML += `
-          <div class="card mb-3" style="width: 18rem;">
+        <div class="col-md-3" w-100>
+          <div class=" card mt-3   h-100 "  style="width: 18rem;">
             <img src="${item.image}" class="card-img-top" alt="${item.title}">
             <div class="card-body">
               <h5 class="card-title">${item.title}</h5>
               <p class="card-text">Price: ₹${item.price}</p>
               <p class="card-text">Quantity: ${item.quantity}</p>
               <p class="card-text"><small>${item.category}</small></p>
+             <button class="btn btn-danger w-100 mt-2 remove-from-cart-btn" data-id="${item.id}">Remove from cart</button>
             </div>
+          </div>
           </div>
         `;
     });
 }
+
+// Remove from cart listener
+document.querySelectorAll(".remove-from-cart-btn").forEach(button => {
+    button.addEventListener("click", function () {
+        const id = parseInt(this.getAttribute("data-id"));
+        removeFromCart(id);
+    });
+});
+
+// Function to remove product from cart
+function removeFromCart(productId) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Remove the item by filtering it out
+    cart = cart.filter(item => item.id !== productId);
+
+    // Save updated cart
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert("Product removed from cart");
+
+    // Optional: Hide the product card from UI
+    const card = document.getElementById(`product-card-${productId}`);
+    if (card) card.style.display = "none";
+    window.location.reload()
+    
+    
+}
+
+
+let order = document.getElementById("order")
+function orderplace(){
+
+
+    alert("Your order has been placed successfully!")
+    localStorage.removeItem("cart")
+    container.innerHTML = ""
+    order.innerHTML = `<h2 class="text-center">Your order has been placed successfully!</h2>`
+  
+
+   
+  
+    
+}
+
+    
+    // order.innerHTML = `<h2 class="text-center">Your order has been placed successfully!</h2>`
+   
+
+
+
 
 
 

@@ -30,6 +30,10 @@
         margin-top : 30px;
     }
 
+    .margin{
+        margin: auto;
+    }
+
 
 
     @media screen and (max-width: 580px) {
@@ -41,4 +45,6 @@
             margin: auto;
             padding: auto;
         }
+
+        
     }
